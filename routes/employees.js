@@ -1,22 +1,37 @@
 var router = require('express').Router();
 module.exports = router;
 var db = require('../server/model/db.js');
-console.log('inside router');
 var Employee = db.Employee;
 
-// console.log(Employee);
-
-// router.get('/', function(req, res, next){
-//   Product.find({})
-//   .then(function(products){
-//     res.json(products);
-//   }, next);
-// });
-
 router.get('/', function(req, res, next){
-  console.log('inside route lookup');
   Employee.find({})
-  .then(function(employees){
+  .then (function(employees){
     res.json(employees);
   }, next);
+});
+
+router.post('/', function(req, res, next){
+  Employee.create(req.body)
+  .then (function(employee){
+    console.log('add one', employee);
+    res.json(employee);
+  }, next);
+});
+
+router.put('/:id/', function(req,res, next){
+  Employee.findOne({ _id: req.params.id})
+  .then (function(employee){
+    employee.areas = req.body.areas;
+    return employee.save();
+  })
+  .then(function(employee){
+    res.json(employee);
+  }, next);
+});
+
+router.delete('/:id', function(req, res, next){
+  Employee.remove({ _id: req.params.id})
+  .then (function(){
+    res.sendStatus(204);
+  });
 });

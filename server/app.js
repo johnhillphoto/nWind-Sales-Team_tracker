@@ -1,17 +1,21 @@
 var express = require('express');
 var Promise = require('bluebird');
 var path = require('path');
-
+var bodyParser = require('body-parser');
 var db = require('./model/db.js');
 
 var app = express();
 
 app.use('/browser', express.static(path.join(__dirname, '../browser')));
+app.use('/vendor', express.static(path.join(__dirname, '../node_modules')));
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 module.exports = app;
 
 app.get('/', function(req, res, next){
-  res.send('Hello World');
+  res.sendFile(path.join(__dirname, '../browser/views', 'index.html'));
 });
 
 app.use('/employees', require('../routes/employees.js'));

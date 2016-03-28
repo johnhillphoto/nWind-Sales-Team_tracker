@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title> Northwind Employee Tracker</title>
+    <link href="vendor/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="browser/styles/styles.css" rel="stylesheet" />
+    <script src="vendor/angular/angular.js"></script>
+    <script src="browser/js/app.js"></script>
+    <script src="browser/js/nwFactory.js"></script>
+  </head>
+  <body ng-app="nwEmployee">
+    <div ng-controller="mainController">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <p class="navbar-text">Northwind Sales Employees</p>
+        </div>
+      </div>
+    </nav>
+
+    <!-- enter new employee -->
+  <div class="row center50 well">
+    <form class="form-inline">
+      <div class="form-group">
+        <input type="text" class="form-control" id="name" placeholder="New Employee Name" ng-model="formInfo.name">
+      </div>
+      <button type="submit" class="btn btn-success" ng-click="addEmployee()">New</button>
+    </form>
+  </div>
+  <div>
+    <ul>
+
+      <li ng-repeat="employee in employees" class="well">
+        <h6>{{employee.name}}</h6>
+        <button type="button" class="btn btn-primary active" >
+            East
+      </button>
+        <h6>{{employee.areas}}</h6>
+      </li>
+    </ul>
+  </div>
+
+
+</div>
+  </body>
+</html>
