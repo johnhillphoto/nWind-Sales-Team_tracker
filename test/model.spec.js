@@ -3,6 +3,29 @@ var db = require('.././server/model/db.js');
 var Promise = require('bluebird');
 var Employee = db.Employee;
 
+function Employee_ (data){
+    this.name = data.name;
+    this.areas = data.areas;
+    this._id = data._id || null;
+  }
+  Employee.prototype.areaCount = function(){
+    return this.areas.length;
+  };
+
+  Employee.prototype.areaCheck = function(area){
+    if (this.areas.indexOf(area) !== -1){
+      return true;
+    }
+    else { return false; }
+  };
+
+  Employee.prototype.isActive = function(){
+    if (this.areas.length > 1){
+      return true;
+    }
+    else { return false; }
+  };
+
 var data = [
     { name: 'Mike Blount',
       areas: ['north','east']
@@ -27,7 +50,8 @@ var dataMaker = function(next){
     })
     .then (function(){
       var Promises = data.map(function(_employee){
-        return Employee.create(_employee);
+        var newEmployee = new Employee_(_employee);
+        return Employee.create(newEmployee);
       });
       return Promises;
     })
@@ -50,6 +74,7 @@ describe('model testing', function(){
     Employee.find({})
       .then(function(_employees){
         employees = _employees;
+        console.log(employees);
         done();
       }, done);
   });

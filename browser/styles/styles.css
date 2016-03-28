@@ -2,3 +2,25 @@
   width:50%;
   margin: auto;
 }
+button, .areas{
+  background-color: gray;
+}
+
+button.btn.btn-primary.active , .areas{
+    background-color: green;
+}
+.btn-primary , .areas{
+    color: #fff;
+    background-color: #BABABA;
+    border-color: #A7A7A7;
+  }
+  #save{
+    background-color: green;
+  }
+  #delete{
+    background-color: red;
+  }
+  .btn-primary:hover, .btn-primary:focus {
+      color: #fff;
+      background-color: #D1D1D1;
+      border-color: #A7A7A7; /*set the color you want here*/

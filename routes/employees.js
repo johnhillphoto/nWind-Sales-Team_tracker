@@ -13,7 +13,6 @@ router.get('/', function(req, res, next){
 router.post('/', function(req, res, next){
   Employee.create(req.body)
   .then (function(employee){
-    console.log('add one', employee);
     res.json(employee);
   }, next);
 });

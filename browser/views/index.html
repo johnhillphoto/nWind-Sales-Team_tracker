@@ -8,6 +8,9 @@
     <script src="vendor/angular/angular.js"></script>
     <script src="browser/js/app.js"></script>
     <script src="browser/js/nwFactory.js"></script>
+    <script src="browser/js/employeeFactory.js"></script>
+    <script src="browser/js/teamFactory.js"></script>
+
   </head>
   <body ng-app="nwEmployee">
     <div ng-controller="mainController">
@@ -26,17 +29,44 @@
         <input type="text" class="form-control" id="name" placeholder="New Employee Name" ng-model="formInfo.name">
       </div>
       <button type="submit" class="btn btn-success" ng-click="addEmployee()">New</button>
+      <button type="button" class="btn btn-primary areas" ng-click="clickArea('north')" ng-class="{'active' : clickedAreas['north']}">
+          North
+      </button>
+      <button type="button" class="btn btn-primary areas" ng-click="clickArea('south')" ng-class="{'active' : clickedAreas['south']}">
+        South
+      </button>
+      <button type="button" class="btn btn-primary areas" ng-click="clickArea('east')" ng-class="{'active' : clickedAreas['east']}">
+        East
+      </button>
+      <button type="button" class="btn btn-primary areas" ng-click="clickArea('west')" ng-class="{'active' : clickedAreas['west']}">
+        West
+      </button>
     </form>
   </div>
   <div>
     <ul>
 
       <li ng-repeat="employee in employees" class="well">
-        <h6>{{employee.name}}</h6>
-        <button type="button" class="btn btn-primary active" >
-            East
-      </button>
-        <h6>{{employee.areas}}</h6>
+        <h4>{{employee.name}}</h4>
+        <button type="button" class="btn btn-primary areas" ng-class="{'active' : employee.areaTracker.north}" ng-click="changeArea(employee._id, north)">
+            North
+        </button>
+        <button type="button" class="btn btn-primary areas" ng-class="{'active' : employee.areaTracker.south}" ng-click="changeArea(employee._id, south)">
+          South
+        </button>
+        <button type="button" class="btn btn-primary areas" ng-class="{'active' : employee.areaTracker.east}" ng-click="changeArea(employee._id, east)">
+          East
+        </button>
+        <button type="button" class="btn btn-primary areas" ng-class="{'active' : employee.areaTracker.west}" ng-click="changeArea(employee._id, west)">
+          West
+        </button>
+        <br>
+        <button type="button" id="save" class="btn btn-primary" ng-class="{'active' : employee.hasChanged}">
+          Save
+        </button>
+        <button type="button" id="delete" class="btn btn-primary" ng-hide="employee.isActive()" ng-click="delete(employee._id)">
+          Delete
+        </button>
       </li>
     </ul>
   </div>
