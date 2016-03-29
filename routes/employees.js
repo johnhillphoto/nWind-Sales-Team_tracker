@@ -18,7 +18,7 @@ router.post('/', function(req, res, next){
 });
 
 router.put('/:id/', function(req,res, next){
-  Employee.findOne({ _id: req.params.id})
+  Employee.findOne({ _id: req.body._id})
   .then (function(employee){
     employee.areas = req.body.areas;
     return employee.save();

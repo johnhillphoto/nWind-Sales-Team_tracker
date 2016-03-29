@@ -34,11 +34,22 @@ function Employee(data){
     else { return false; }
   };
 
+  // Employee.prototype.isActive = function(){
+  //   if (this.areas.length >= 1){
+  //     return true;
+  //   }
+  //   else { return false; }
+  // };
+
   Employee.prototype.isActive = function(){
-    if (this.areas.length >= 1){
-      return true;
-    }
-    else { return false; }
+    var num = 0;
+    for (var key in this.areaTracker) {
+      if (this.areaTracker[key] === true){
+        num ++;
+      }//end if
+    }//end for
+    if (num > 0){ return true;}
+    else { return false;}
   };
 
 

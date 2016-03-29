@@ -9,7 +9,6 @@
     <script src="browser/js/app.js"></script>
     <script src="browser/js/nwFactory.js"></script>
     <script src="browser/js/employeeFactory.js"></script>
-    <script src="browser/js/teamFactory.js"></script>
 
   </head>
   <body ng-app="nwEmployee">
@@ -48,20 +47,20 @@
 
       <li ng-repeat="employee in employees" class="well">
         <h4>{{employee.name}}</h4>
-        <button type="button" class="btn btn-primary areas" ng-class="{'active' : employee.areaTracker.north}" ng-click="changeArea(employee._id, north)">
+        <button type="button" class="btn btn-primary areas" ng-class="{'active' : employee.areaTracker.north}" ng-click="changeArea(employee._id, 'north')">
             North
         </button>
-        <button type="button" class="btn btn-primary areas" ng-class="{'active' : employee.areaTracker.south}" ng-click="changeArea(employee._id, south)">
+        <button type="button" class="btn btn-primary areas" ng-class="{'active' : employee.areaTracker.south}" ng-click="changeArea(employee._id, 'south')">
           South
         </button>
-        <button type="button" class="btn btn-primary areas" ng-class="{'active' : employee.areaTracker.east}" ng-click="changeArea(employee._id, east)">
+        <button type="button" class="btn btn-primary areas" ng-class="{'active' : employee.areaTracker.east}" ng-click="changeArea(employee._id, 'east')">
           East
         </button>
-        <button type="button" class="btn btn-primary areas" ng-class="{'active' : employee.areaTracker.west}" ng-click="changeArea(employee._id, west)">
+        <button type="button" class="btn btn-primary areas" ng-class="{'active' : employee.areaTracker.west}" ng-click="changeArea(employee._id, 'west')">
           West
         </button>
         <br>
-        <button type="button" id="save" class="btn btn-primary" ng-class="{'active' : employee.hasChanged}">
+        <button type="button" id="save" class="btn btn-primary" ng-class="{'active' : employee.hasChanged}"  ng-click="updateEmployee(employee._id)">
           Save
         </button>
         <button type="button" id="delete" class="btn btn-primary" ng-hide="employee.isActive()" ng-click="delete(employee._id)">

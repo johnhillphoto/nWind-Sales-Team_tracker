@@ -80,11 +80,34 @@ $scope.delete = function(id){
   nwFactory.delete(id);
 };
 
-// $scope.changeArea(id, area){
-//   var index = findAnEmployee(id);
-//   $scope.employees[index];
-//   //change areas in both tracker and areas
-//
-// };
+$scope.changeArea = function(id, area){
+  var index = findAnEmployee(id);
+var flip = ($scope.employees[index].areaTracker[area]);
+  if (flip === true){
+    $scope.employees[index].areaTracker[area] = false;
+    $scope.employees[index].areaCountTracker--;
+    console.log($scope.employees[index].areaCountTracker);
+  } else {
+    if($scope.employees[index].areaCountTracker < 3){
+    $scope.employees[index].areaTracker[area] = true;
+    $scope.employees[index].areaCountTracker++;
+    console.log($scope.employees[index].areaCountTracker);
+  }
+
+  }
+  $scope.updateEmployee = function (id){
+    updateEmployee(id);
+  };
+
+  function updateEmployee(id){
+    var index = findAnEmployee(id);
+    nwFactory.updateEmployee($scope.employees[index])
+    .then(function(employee){
+      $scope.employees[index]['areas']=employee.areas;
+    });
+
+  }
+
+};
 
 });//end mainController
