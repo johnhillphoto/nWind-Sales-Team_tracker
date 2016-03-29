@@ -42,9 +42,8 @@
       </button>
     </form>
   </div>
-  <div>
-    <ul>
-
+  <div >
+    <ul id="employeeList">
       <li ng-repeat="employee in employees" class="well">
         <h4>{{employee.name}}</h4>
         <button type="button" class="btn btn-primary areas" ng-class="{'active' : employee.areaTracker.north}" ng-click="changeArea(employee._id, 'north')">

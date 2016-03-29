@@ -8,11 +8,11 @@ $scope.formInfo = {
   name: "",
   areas: []
 };
-
 $scope.employees;
 
 $scope.clickedAreas = { north:false, south:false, east:false, west:false};
 var clickedAreasArray = { north:false, south:false, east:false, west:false};
+var clickedAreasReset = { north:false, south:false, east:false, west:false};
 
 function clickedTrueCounter () {
   var num = 1;
@@ -34,7 +34,6 @@ $scope.clickArea = function(area){
 }
 };
 
-
 function enhanceEmployee(employee){
   var enhancedEmployee = new Employee(employee);
   enhancedEmployee.areaCountPopulate();
@@ -48,17 +47,21 @@ function getEmployees (Employee){
     var employeeInstances = _employees.map(function(employee){
       return enhanceEmployee(employee);
     });
+    nwFactory.team = employeeInstances;
     $scope.employees = employeeInstances;
     });
 }
 
 getEmployees();
-
+// console.log(nwFactory.sendTeam());
+//
 function addEmployee (){
   nwFactory.addEmployee($scope.formInfo, clickedAreasArray)
   .then(function(employee){
     var enhancedEmployee = enhanceEmployee(employee);
-    $scope.employees.push(enhancedEmployee);
+    $scope.employees.unshift(enhancedEmployee);
+    $scope.clickedAreas = clickedAreasReset;
+    clickedAreasArray = clickedAreasReset;
     });
 }//end addEmployee
 
@@ -86,12 +89,10 @@ var flip = ($scope.employees[index].areaTracker[area]);
   if (flip === true){
     $scope.employees[index].areaTracker[area] = false;
     $scope.employees[index].areaCountTracker--;
-    console.log($scope.employees[index].areaCountTracker);
   } else {
     if($scope.employees[index].areaCountTracker < 3){
     $scope.employees[index].areaTracker[area] = true;
     $scope.employees[index].areaCountTracker++;
-    console.log($scope.employees[index].areaCountTracker);
   }
 
   }
@@ -105,9 +106,7 @@ var flip = ($scope.employees[index].areaTracker[area]);
     .then(function(employee){
       $scope.employees[index]['areas']=employee.areas;
     });
-
-  }
-
+  }//end function updateEmployee
 };
 
 });//end mainController

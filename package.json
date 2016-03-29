@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "seed": "CONN=mongodb://localhost/nwEmployees node ./seed/seed.js",
     "test": "CONN=mongodb://localhost/nwEmployees node ./node_modules/mocha/bin/mocha",
     "start": "CONN=mongodb://localhost/nwEmployees nodemon ./server/server.js"
   },

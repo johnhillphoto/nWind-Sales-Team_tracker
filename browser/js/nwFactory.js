@@ -41,7 +41,6 @@ nwEmployee.factory ('nwFactory', function($http, $log, Employee){
         return employee.data;
       })
       .catch($log.error);
-
   }//end function
 
 };
