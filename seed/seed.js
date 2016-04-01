@@ -1,3 +1,4 @@
+//why not rename this file index
 var db = require('.././server/model/db.js');
 // console.log('db is', db);
 var Promise = require('bluebird');

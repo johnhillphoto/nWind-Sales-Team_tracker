@@ -10,7 +10,7 @@ app.use('/browser', express.static(path.join(__dirname, '../browser')));
 app.use('/vendor', express.static(path.join(__dirname, '../node_modules')));
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));//why?
 
 module.exports = app;
 
@@ -18,7 +18,7 @@ app.get('/', function(req, res, next){
   res.sendFile(path.join(__dirname, '../browser/views', 'index.html'));
 });
 
-app.use('/employees', require('../routes/employees.js'));
+app.use('/employees', require('../routes/employees.js'));//i would be happier with /api/employees
 
 //central error handling
 app.use(function(err, req, res, next){

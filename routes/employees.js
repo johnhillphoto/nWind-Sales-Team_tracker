@@ -1,3 +1,4 @@
+//good
 var router = require('express').Router();
 module.exports = router;
 var db = require('../server/model/db.js');

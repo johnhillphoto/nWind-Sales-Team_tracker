@@ -1,4 +1,7 @@
-nwEmployee.factory ('Employee', function($http, $log){
+//naming this is less like a factory and more like a constructor..
+// just call it Employee
+nwEmployee.factory ('Employee', function(){
+  //I like this idea john!
 
 
 function Employee(data){

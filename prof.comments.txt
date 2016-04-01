@@ -1,0 +1,2 @@
+- good work john
+- nice use of Employee constructor
